@@ -1,2 +1,25 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/JetBrainsMono.ttf');
+}
+@font-face {
+    font-family: "Courier Prime";
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/CourierPrime-Regular.ttf');
+}
+
+@theme {
+    --font-jetbrains: "Jetbrains Mono", sans-serif;
+    --font-courier: "Courier Prime", monospace;
+    --color-terminal-green: #00FF00;
+}
+
+html {
+    @apply font-courier bg-black text-white;
+}
+

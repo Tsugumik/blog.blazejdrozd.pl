@@ -1,8 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import UnderConstruction from '../components/UnderConstruction';
+import TerminalWindow from "../components/terminal/TerminalWindow.astro";
+import Command from "../components/terminal/Command.astro";
 ---
 
-<Layout>
-	<UnderConstruction>
+<Layout pageTitle="Blog">
+	<div class="container mx-auto px-2 min-h-screen flex items-center justify-center">
+		<TerminalWindow>
+			<Command cmd="cat /var/log/blog.txt">
+				<p>Website under construction...</p>
+				<p>Expected uptime: "whenever it's ready"</p>
+				<p>In the meantime: brew some tea ☕ or check my Github.</p>
+			</Command>
+		</TerminalWindow>
+	</div>
 </Layout>
