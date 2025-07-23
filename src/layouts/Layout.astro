@@ -1,5 +1,10 @@
 ---
 import "../styles/app.css";
+import NavBar from "../components/navigation/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const { pageTitle } = Astro.props;
+
 ---
 <!doctype html>
 <html lang="en">
@@ -8,9 +13,11 @@ import "../styles/app.css";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
+		<NavBar />
 		<slot />
+		<Footer />
 	</body>
 </html>
