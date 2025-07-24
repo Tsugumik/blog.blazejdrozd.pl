@@ -14,7 +14,7 @@ const announcements = (await getCollection('announcement')).sort((a, b) =>
 ).slice(0, 3);
 ---
 
-<Layout pageTitle="home">
+<Layout pageTitle="Home">
     <Command cmd="./announce_latest.sh">
         {announcements.map((post) => (
                 <div class="py-2">

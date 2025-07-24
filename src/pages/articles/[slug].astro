@@ -1,7 +1,7 @@
 ---
 import {getCollection, getEntry, render} from "astro:content";
-import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import Command from "../../components/terminal/Command.astro";
+import Layout from "../../layouts/Layout.astro";
 
 const {post} = Astro.props;
 
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 const {Content} = await render(post);
 ---
 
-<ArticleLayout>
+<Layout pageTitle={post.data.title}>
     <div class="px-2">
         <Command cmd=`cat ~/articles/${post.id}.md`></Command>
     </div>
@@ -48,5 +48,5 @@ const {Content} = await render(post);
             <Content/>
         </div>
     </article>
-</ArticleLayout>
+</Layout>
 

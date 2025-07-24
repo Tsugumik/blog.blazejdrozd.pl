@@ -9,7 +9,7 @@ const blogPosts = (await getCollection('article')).sort((a, b) =>
 
 console.log(blogPosts);
 ---
-<Layout pageTitle="home">
+<Layout pageTitle="Articles">
     <Command cmd="ls ~/articles">
         {blogPosts.map((post) => (
                 <div class="my-2">
