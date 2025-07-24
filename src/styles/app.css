@@ -46,6 +46,10 @@ html {
     @apply text-xl my-4 text-terminal-green border-dashed border-b border-b-white;
 }
 
+.markdown h3 {
+    @apply text-lg my-4 text-terminal-green border-dashed border-b border-b-white;
+}
+
 .markdown ul {
     @apply list-disc list-inside my-4;
 }
