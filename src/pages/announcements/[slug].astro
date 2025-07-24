@@ -1,0 +1,48 @@
+---
+import {getCollection, getEntry, render} from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import Command from "../../components/terminal/Command.astro";
+
+const {post} = Astro.props;
+
+export async function getStaticPaths() {
+    const announcements = await getCollection("announcement");
+
+    return announcements.map((post) => {
+        return {
+            params: {
+                slug: post.id
+            },
+            props: {
+                post
+            }
+        };
+    });
+}
+
+const {Content} = await render(post);
+---
+
+<ArticleLayout>
+    <div class="px-2">
+        <Command cmd=`cat ~/announcements/${post.id}.md`></Command>
+    </div>
+    <article class="container mx-auto px-2 py-4">
+        <div class="border-b  border-dashed">
+            <p class="text-terminal-green font-mono text-sm">
+                <time datetime={post.data.pubDate.toString()}>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    })}
+                </time>
+            </p>
+        </div>
+
+        <div class="markdown mt-8">
+            <Content/>
+        </div>
+    </article>
+</ArticleLayout>
+
