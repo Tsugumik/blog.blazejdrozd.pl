@@ -1,17 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TerminalWindow from "../components/terminal/TerminalWindow.astro";
 import Command from "../components/terminal/Command.astro";
+
+
+import {getCollection} from 'astro:content';
+
+const blogPosts = (await getCollection('article')).sort((a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+).slice(0, 5);
+
+const announcements = (await getCollection('announcement')).sort((a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+).slice(0, 3);
 ---
 
-<Layout pageTitle="Blog">
-	<div class="container mx-auto px-2 min-h-screen flex items-center justify-center">
-		<TerminalWindow>
-			<Command cmd="cat /var/log/blog.txt">
-				<p>Website under construction...</p>
-				<p>Expected uptime: "whenever it's ready"</p>
-				<p>In the meantime: brew some tea ☕ or check my Github.</p>
-			</Command>
-		</TerminalWindow>
-	</div>
+<Layout pageTitle="Home">
+    <Command cmd="./announce_latest.sh">
+        {announcements.map((post) => (
+                <div class="py-2">
+                    <time datetime={post.data.toString()}>
+                        {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        })}
+                    </time>
+                    <a href={`/announcements/${post.id}`} class="underline">{post.id}.md</a>
+                    <div class="markdown" set:html={post.rendered.html}></div>
+                </div>
+        ))}
+    </Command>
+
+    <Command cmd="./recent5_articles.sh">
+        {blogPosts.map((post) => (
+                <div class="my-2">
+                    <div>{post.data.description}</div>
+
+                    <a href={`/articles/${post.id}`} class="underline">&gt; cat ~/articles/{post.id}.md</a>
+                </div>
+        ))}
+    </Command>
 </Layout>

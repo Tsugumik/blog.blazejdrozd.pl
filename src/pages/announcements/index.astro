@@ -1,0 +1,26 @@
+---
+import {getCollection} from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import Command from "../../components/terminal/Command.astro";
+
+const announcements = (await getCollection('announcement')).sort((a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+<Layout pageTitle="Announcements">
+    <Command cmd="ls ~/announcements">
+        {announcements.map((post) => (
+                <div class="my-2">
+                    -rw-r--r--
+                    <time datetime={post.data.pubDate.toString()}>
+                        {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        })}
+                    </time>
+                    <a href={`/announcements/${post.id}`} class="underline">{post.id}.md</a>
+                </div>
+        ))}
+    </Command>
+</Layout>

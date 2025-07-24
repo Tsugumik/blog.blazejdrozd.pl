@@ -1,0 +1,52 @@
+---
+import {getCollection, getEntry, render} from "astro:content";
+import Command from "../../components/terminal/Command.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const {post} = Astro.props;
+
+export async function getStaticPaths() {
+    const articles = await getCollection("article");
+
+    return articles.map((post) => {
+        return {
+            params: {
+                slug: post.id
+            },
+            props: {
+                post
+            }
+        };
+    });
+}
+
+const {Content} = await render(post);
+---
+
+<Layout pageTitle={post.data.title}>
+    <div class="px-2">
+        <Command cmd=`cat ~/articles/${post.id}.md`></Command>
+    </div>
+    <article class="container mx-auto px-2 py-4">
+        <div class="border-b  border-dashed">
+            <h1 class="text-4xl text-terminal-green ">{post.data.title}</h1>
+            <p class="text-terminal-green font-mono text-sm">
+                Written by <span class="text-white">{post.data.author}</span>
+                &nbsp;~&nbsp;
+                <time datetime={post.data.pubDate.toString()}>
+                    {new Date(post.data.pubDate).toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    })}
+                </time>
+            </p>
+            {post.data.description && <p class="text-terminal-green italic mt-4">{post.data.description}</p>}
+        </div>
+
+        <div class="markdown mt-8">
+            <Content/>
+        </div>
+    </article>
+</Layout>
+

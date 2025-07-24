@@ -1,9 +1,9 @@
 ---
-
 import Command from "./terminal/Command.astro";
-import Link from "./terminal/Link.astro";---
-<footer class="border-t px-2 py-4 text-sm">
-    <div class="container mx-auto">
+import Link from "./terminal/Link.astro";
+---
+<footer class="border-t text-sm">
+    <div class="container mx-auto px-2 py-4">
         <Command cmd="cat ~/copyright.txt">
             <p>
                 Copyright © from {new Date().getFullYear()} to the end of time
@@ -12,11 +12,11 @@ import Link from "./terminal/Link.astro";---
                 All rights reserved by Błażej Drozd
             </p>
         </Command>
-
         <Command cmd="cat ~/contact.txt">
             <Link href="mailto:tsugumi@duck.com">Email</Link>
             <Link href="https://github.com/Tsugumik">Github</Link>
             <Link href="https://www.linkedin.com/in/b%C5%82a%C5%BCej-drozd-0b2245216">LinkedIn</Link>
+            <Link href="https://github.com/Tsugumik/blog.blazejdrozd.pl">Like it? Give it a star on GitHub ⭐</Link>
         </Command>
     </div>
 </footer>

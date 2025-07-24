@@ -2,22 +2,27 @@
 import "../styles/app.css";
 import NavBar from "../components/navigation/NavBar.astro";
 import Footer from "../components/Footer.astro";
+import TerminalWindow from "../components/terminal/TerminalWindow.astro";
 
-const { pageTitle } = Astro.props;
-
+const {pageTitle} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<NavBar />
-		<slot />
-		<Footer />
-	</body>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="generator" content={Astro.generator}/>
+    <title>{pageTitle}</title>
+    <meta name="description" content="Personal devlog and terminal-style blog by Błażej Drozd" />
+</head>
+<body>
+<NavBar pageTitle={pageTitle}/>
+<div class="container mx-auto px-2 flex items-center justify-center min-h-screen">
+    <TerminalWindow>
+        <slot/>
+    </TerminalWindow>
+</div>
+<Footer/>
+</body>
 </html>
