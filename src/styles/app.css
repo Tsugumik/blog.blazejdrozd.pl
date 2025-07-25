@@ -70,14 +70,26 @@ html {
     @apply border-t  my-8
 }
 
-h1 {
-    @apply text-2xl;
+article h1,
+section h1,
+aside h1,
+nav h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
-h2 {
-    @apply text-xl;
+article h2,
+section h2,
+aside h2,
+nav h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
 }
 
-h3 {
-    @apply text-lg;
+article h3,
+section h3,
+aside h3,
+nav h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
 }
