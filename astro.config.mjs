@@ -14,5 +14,8 @@ export default defineConfig({
         shikiConfig: {
             theme: "andromeeda"
         }
+    },
+    image: {
+        responsiveStyles: true,
     }
 });

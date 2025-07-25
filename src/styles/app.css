@@ -39,15 +39,15 @@ html {
 }
 
 .markdown h1 {
-    @apply text-2xl my-4 text-terminal-green border-dashed border-b border-b-white;
+    @apply text-terminal-green border-dashed border-b border-b-white;
 }
 
 .markdown h2 {
-    @apply text-xl my-4 text-terminal-green border-dashed border-b border-b-white;
+    @apply text-terminal-green border-dashed border-b border-b-white;
 }
 
 .markdown h3 {
-    @apply text-lg my-4 text-terminal-green border-dashed border-b border-b-white;
+    @apply text-terminal-green border-dashed border-b border-b-white;
 }
 
 .markdown ul {
@@ -68,4 +68,16 @@ html {
 
 .markdown hr {
     @apply border-t  my-8
+}
+
+h1 {
+    @apply text-2xl;
+}
+
+h2 {
+    @apply text-xl;
+}
+
+h3 {
+    @apply text-lg;
 }
