@@ -13,6 +13,11 @@ This is my personal space on the web where I share:
 
 It's intentionally minimal — text-focused and clean.
 
+## 🌐 Deployment
+
+This website is deployed using **Cloudflare Workers**
+as a serverless, edge-hosted static site, allowing for ultra-fast, globally distributed delivery.
+
 ## 🚀 Tech stack
 
 - [Astro](https://astro.build/) — fast static site generator
